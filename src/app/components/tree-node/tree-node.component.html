@@ -1,0 +1,8 @@
+<div *ngFor="let tree of trees">
+    <ul>
+        <li>
+            {{tree.title}} (id: {{tree.id}}; parentId: {{tree.parentId}} )
+            <app-tree-node [trees]="tree.children" *ngIf="tree.children"></app-tree-node>
+        </li>
+    </ul>
+</div>
