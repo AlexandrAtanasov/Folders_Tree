@@ -12,11 +12,10 @@ export class TreeManagerService {
 
   constructor(private http: HttpClient) { }
 
-  public async getSortedTree(): Promise<Tree[]> {
+  public async getHierarchyTree(): Promise<Tree[]> {
     let trees = await this.getTree();
 
-    trees = this.unflatten(trees);
-    console.log(trees);
+    trees = this.makeHierarchyTree(trees);
     return trees;
   }
 
@@ -24,38 +23,35 @@ export class TreeManagerService {
     return await this.http.get<Tree[]>(this.treesURL).toPromise<Tree[]>();
   }
 
-  private unflatten(trees: Tree[]): Tree[]
+  private makeHierarchyTree(trees: Tree[]): Tree[]
   {
-    let tree = [];
-    let mappedArr = {};
+    let hierarchyTree = [];
+    let draftArr = {};
     let arrElem;
-    let mappedElem;
+    let draftElem;
 
-    // First map the nodes of the array to an object -> create a hash table.
     for (let i = 0, len = trees.length; i < len; i++)
     {
       arrElem = trees[i];
-      mappedArr[arrElem.id] = arrElem;
-      mappedArr[arrElem.id].children = [];
+      draftArr[arrElem.id] = arrElem;
+      draftArr[arrElem.id].children = [];
     }
-    for (let id in mappedArr)
+    for (let id in draftArr)
     {
-      if (mappedArr.hasOwnProperty(id))
+      if (draftArr.hasOwnProperty(id))
       {
-        mappedElem = mappedArr[id];
-        // If the element is not at the root level, add it to its parent array of children.
-        if (mappedElem.parentId)
+        draftElem = draftArr[id];
+        if (draftElem.parentId)
         {
-          mappedArr[mappedElem.parentId].children.push(mappedElem);
+          draftArr[draftElem.parentId].children.push(draftElem);
         }
-        // If the element is at the root level, add it to first level elements array.
         else
         {
-          tree.push(mappedElem);
+          hierarchyTree.push(draftElem);
         }
       }
     }
-    return tree;
+    return hierarchyTree;
   }
 
 }

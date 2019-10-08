@@ -1,0 +1,28 @@
+:host
+{
+    width: 400px;
+    height: 190px;
+}
+ul
+{
+    margin: 0;
+    list-style: square;
+    line-height: 2rem;
+    font-size: 1.1rem;
+    transition: display 1s;
+    span
+    {
+        margin: 0;
+        padding-left: 1rem;
+        cursor: pointer;
+    };
+}
+
+.hide
+{
+    // background-color: red;
+    // visibility: hidden;
+    display: none;
+   
+}
+

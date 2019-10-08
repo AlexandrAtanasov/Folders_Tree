@@ -1,8 +1,10 @@
-<div *ngFor="let tree of trees">
+<div *ngFor="let t of tree">
     <ul>
         <li>
-            {{tree.title}} (id: {{tree.id}}; parentId: {{tree.parentId}} )
-            <app-tree-node [trees]="tree.children" *ngIf="tree.children"></app-tree-node>
+            <span (click)="toggle($event)">
+                {{t.title}} (id: {{t.id}}; parentId: {{t.parentId}})
+            </span>
+            <app-tree-node [class.hide]="visibleTree" [tree]="t.children" *ngIf="t.children"></app-tree-node>
         </li>
     </ul>
 </div>

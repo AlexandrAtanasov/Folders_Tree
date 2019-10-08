@@ -10,15 +10,15 @@ import { TreeManagerService } from '../../services/tree-manager/tree-manager.ser
 })
 
 export class TreeComponent implements OnInit {
-  public trees: Tree[] = [];
+  public tree: Tree[] = [];
 
-  constructor(private _treeManager: TreeManagerService) {}
+  constructor(private treeManager: TreeManagerService) {}
 
   ngOnInit() {
     this.getTreesFromManager();
   }
 
   private async getTreesFromManager(): Promise<void> {
-    this.trees = await this._treeManager.getSortedTree();
+    this.tree = await this.treeManager.getHierarchyTree();
   }
 }

@@ -1,17 +1,20 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tree-node',
   templateUrl: './tree-node.component.html',
   styleUrls: ['./tree-node.component.scss']
 })
-export class TreeNodeComponent implements OnInit {
-
-  @Input() trees;
+export class TreeNodeComponent {
+  
+  @Input() tree;
+  
+  public visibleTree = true;
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
+  toggle(event) {
+    let target = event.target || event.srcElement || event.currentTarget;
+    target = target.nextElementSibling.classList.toggle('hide');
+}
 }
