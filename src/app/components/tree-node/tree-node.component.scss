@@ -2,6 +2,7 @@
 {
     width: 400px;
     height: 190px;
+    user-select: none;
 }
 ul
 {
@@ -20,9 +21,6 @@ ul
 
 .hide
 {
-    // background-color: red;
-    // visibility: hidden;
     display: none;
-   
 }
 

@@ -21,4 +21,5 @@ export class TreeComponent implements OnInit {
   private async getTreesFromManager(): Promise<void> {
     this.tree = await this.treeManager.getHierarchyTree();
   }
+
 }

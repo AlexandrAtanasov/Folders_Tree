@@ -8,31 +8,31 @@ import { Tree } from '../../models/tree/tree';
 })
 
 export class TreeManagerService {
-  private treesURL: string = 'https://raw.githubusercontent.com/wrike/frontend-test/master/data.json';
+  private treeURL: string = 'https://raw.githubusercontent.com/wrike/frontend-test/master/data.json';
 
   constructor(private http: HttpClient) { }
 
   public async getHierarchyTree(): Promise<Tree[]> {
-    let trees = await this.getTree();
+    let tree = await this.getTree();
 
-    trees = this.makeHierarchyTree(trees);
-    return trees;
+    tree = this.makeHierarchyTree(tree);
+    return tree;
   }
 
   private async getTree(): Promise<Tree[]> {
-    return await this.http.get<Tree[]>(this.treesURL).toPromise<Tree[]>();
+    return await this.http.get<Tree[]>(this.treeURL).toPromise<Tree[]>();
   }
 
-  private makeHierarchyTree(trees: Tree[]): Tree[]
+  private makeHierarchyTree(tree: Tree[]): Tree[]
   {
     let hierarchyTree = [];
     let draftArr = {};
     let arrElem;
     let draftElem;
 
-    for (let i = 0, len = trees.length; i < len; i++)
+    for (let i = 0, len = tree.length; i < len; i++)
     {
-      arrElem = trees[i];
+      arrElem = tree[i];
       draftArr[arrElem.id] = arrElem;
       draftArr[arrElem.id].children = [];
     }

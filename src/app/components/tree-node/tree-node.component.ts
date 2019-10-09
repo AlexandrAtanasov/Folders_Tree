@@ -16,5 +16,5 @@ export class TreeNodeComponent {
   toggle(event) {
     let target = event.target || event.srcElement || event.currentTarget;
     target = target.nextElementSibling.classList.toggle('hide');
-}
+  }
 }

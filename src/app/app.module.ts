@@ -11,14 +11,14 @@ import { TreeNodeComponent } from './components/tree-node/tree-node.component';
   declarations: [
     AppComponent,
     TreeComponent,
-    TreeNodeComponent,
+    TreeNodeComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule
   ],
   providers: [
-    TreeManagerService,
+    TreeManagerService
   ],
   bootstrap: [AppComponent]
 })
